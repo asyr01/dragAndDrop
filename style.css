@@ -126,6 +126,7 @@ ul {
 
 .drag-item-list {
   min-height: 50px;
+  overflow-y: scroll;
 }
 
 .drag-item {
