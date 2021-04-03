@@ -76,22 +76,27 @@ function createItemEl(columnEl, column, item, index) {
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
 function updateDOM() {
   // Check localStorage once
-  !updatedOnLoad && getSavedColumns();
+  if (!updatedOnLoad) {
+    getSavedColumns();
+  }
   // Backlog Column
   backlogList.textContent = '';
   backlogListArray.forEach((backlogItem, index) => {
     createItemEl(backlogList, 0, backlogItem, index);
   });
+
   // Progress Column
   progressList.textContent = '';
   progressListArray.forEach((progressItem, index) => {
     createItemEl(progressList, 0, progressItem, index);
   });
+
   // Complete Column
   completeList.textContent = '';
   completeListArray.forEach((completeItem, index) => {
     createItemEl(completeList, 0, completeItem, index);
   });
+
   // On Hold Column
   onHoldList.textContent = '';
   onHoldListArray.forEach((onHoldItem, index) => {
@@ -105,8 +110,6 @@ function updateDOM() {
 
 // Allow arrays to reflect Drag and Drop items
 function rebuildArrays() {
-  console.log(backlogList.children);
-  console.log(progressList.children);
   backlogListArray = [];
   for (let i = 0; i < backlogList.children.length; i++) {
     backlogListArray.push(backlogList.children[i].textContent);
@@ -129,18 +132,17 @@ function rebuildArrays() {
 // When item starts dragging
 function drag(e) {
   draggedItem = e.target;
-  console.log('draggedItem', draggedItem);
+}
+
+// Column Allows for Item to Drop.
+function allowDrop(e) {
+  e.preventDefault();
 }
 
 // When item enters column area
 function dragEnter(column) {
   listColumns[column].classList.add('over');
   currentColumn = column;
-}
-
-// Column Allows for Item to Drop.
-function allowDrop(e) {
-  e.preventDefault();
 }
 
 // Dropping Item in Column.
