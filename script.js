@@ -3,7 +3,7 @@ const saveItemBtns = document.querySelectorAll('.solid');
 const addItemContainers = document.querySelectorAll('.add-container');
 const addItems = document.querySelectorAll('.add-item');
 // Item Lists
-const itemLists = document.querySelectorAll('.drag-item-list');
+const listColumns = document.querySelectorAll('.drag-item-list');
 const backlogList = document.getElementById('backlog-list');
 const progressList = document.getElementById('progress-list');
 const completeList = document.getElementById('complete-list');
@@ -21,6 +21,7 @@ let listArrays = [];
 
 // Drag Functionality
 let draggedItem;
+let currentColumn;
 
 // Get Arrays from localStorage if available, set default values if not
 function getSavedColumns() {
@@ -105,6 +106,12 @@ function drag(e) {
   console.log('draggedItem', draggedItem);
 }
 
+// When item enters column area
+function dragEnter(column) {
+  listColumns[column].classList.add('over');
+  currentColumn = column;
+}
+
 // Column Allows for Item to Drop.
 function allowDrop(e) {
   e.preventDefault();
@@ -113,6 +120,13 @@ function allowDrop(e) {
 // Dropping Item in Column.
 function drop(e) {
   e.preventDefault();
+  //Remove bg-color / padding
+  listColumns.forEach((column) => {
+    column.classList.remove('over');
+  });
+  // Add item to the Column
+  const parent = listColumns[currentColumn];
+  parent.appendChild(draggedItem);
 }
 
 // On Load
