@@ -100,6 +100,12 @@ function updateDOM() {
   // Run getSavedColumns only once, Update Local Storage
 }
 
+// Allow arrays to reflect Drag and Drop items
+function rebuildArrays() {
+  console.log(backlogList.children);
+  console.log(progressList.children);
+}
+
 // When item starts dragging
 function drag(e) {
   draggedItem = e.target;
@@ -127,6 +133,7 @@ function drop(e) {
   // Add item to the Column
   const parent = listColumns[currentColumn];
   parent.appendChild(draggedItem);
+  rebuildArrays();
 }
 
 // On Load
