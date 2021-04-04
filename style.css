@@ -173,10 +173,6 @@ ul {
   transform: scale(0.97);
 }
 
-.solid {
-  display: none;
-}
-
 .solid:hover {
   transition: unset;
   filter: brightness(95%);
