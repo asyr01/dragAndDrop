@@ -103,6 +103,20 @@ function updateDOM() {
   updateSavedColumns();
 }
 
+// Show add Item Input Box
+function showInputBox(column) {
+  addBtns[column].style.visibility = 'hidden';
+  saveItemBtns[column].display = 'flex';
+  addItemContainers[column].style.display = 'flex';
+}
+
+// Hide Item Input Box
+function hideInputBox(column) {
+  addBtns[column].style.visibility = 'visible';
+  saveItemBtns[column].display = 'none';
+  addItemContainers[column].style.display = 'none';
+}
+
 // Allow arrays to reflect Drag and Drop items
 function rebuildArrays() {
   backlogListArray = [];
