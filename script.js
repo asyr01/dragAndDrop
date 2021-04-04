@@ -103,6 +103,19 @@ function updateDOM() {
   updateSavedColumns();
 }
 
+// Add to Column List, Reset Textbox.
+function addToColumn(column) {
+  if (addItems[column].textContent === '') {
+    alert('Please fill the input before saving.');
+  } else {
+    const itemText = addItems[column].textContent;
+    const selectedArray = listArrays[column];
+    selectedArray.push(itemText);
+    addItems[column].textContent = '';
+    updateDOM();
+  }
+}
+
 // Show add Item Input Box
 function showInputBox(column) {
   addBtns[column].style.visibility = 'hidden';
@@ -115,6 +128,7 @@ function hideInputBox(column) {
   addBtns[column].style.visibility = 'visible';
   saveItemBtns[column].display = 'none';
   addItemContainers[column].style.display = 'none';
+  addToColumn(column);
 }
 
 // Allow arrays to reflect Drag and Drop items
