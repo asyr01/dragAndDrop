@@ -60,6 +60,7 @@ function updateSavedColumns() {
 // Filter Arrays to remove empty items
 function filterArray(array) {
   const filteredArray = array.filter((item) => item !== null);
+  return filteredArray;
 }
 
 // Create DOM Elements for each list item
@@ -121,6 +122,8 @@ function updateItem(id, column) {
   const selectedColumnEl = listColumns[column].children;
   if (!selectedColumnEl[id].textContent) {
     delete selectedArray[id];
+  } else {
+    selectedArray[id] = selectedColumnEl[id].textContent;
   }
   updateDOM;
 }
